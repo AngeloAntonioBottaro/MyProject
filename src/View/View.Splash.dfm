@@ -1,10 +1,10 @@
 object ViewSplash: TViewSplash
   Left = 0
   Top = 0
-  BorderStyle = bsNone
+  BorderStyle = bsDialog
   Caption = 'ViewSplash'
-  ClientHeight = 252
-  ClientWidth = 362
+  ClientHeight = 223
+  ClientWidth = 356
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,14 +15,15 @@ object ViewSplash: TViewSplash
   Position = poMainFormCenter
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object imgBack: TImage
     Left = 0
     Top = 0
-    Width = 362
-    Height = 252
+    Width = 356
+    Height = 223
     Align = alClient
     AutoSize = True
     Center = True
@@ -1464,10 +1465,11 @@ object ViewSplash: TViewSplash
     Font.Style = [fsBold]
     ParentFont = False
     Layout = tlCenter
+    StyleElements = [seFont, seBorder]
   end
   object lbDireitosAutorais: TLabel
     Left = 96
-    Top = 8
+    Top = 24
     Width = 180
     Height = 13
     Alignment = taCenter
@@ -1480,6 +1482,7 @@ object ViewSplash: TViewSplash
     Font.Style = [fsBold]
     ParentFont = False
     Layout = tlCenter
+    StyleElements = [seFont, seBorder]
   end
   object TimerShow: TTimer
     Enabled = False

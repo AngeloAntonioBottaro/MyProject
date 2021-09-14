@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.Imaging.jpeg;
+  Vcl.Imaging.jpeg,
+  Controller.Interfaces;
 
 type
   TViewSplash = class(TForm)
@@ -17,7 +18,10 @@ type
     procedure FormShow(Sender: TObject);
     procedure TimerShowTimer(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormCreate(Sender: TObject);
   private
+    FController: iController;
+
     procedure LoadProtocols;
     procedure ConfComponents;
     procedure WriteLoadMessages(pMessage: String);
@@ -33,21 +37,27 @@ implementation
 
 {$R *.dfm}
 
-uses View.Main;
+uses View.Main, Controller;
 
 procedure TViewSplash.ConfComponents;
 begin
-   lbDireitosAutorais.Caption := 'Todos os direitos reservados a AABSoftware';
-   lbDireitosAutorais.Top     := Self.Top + 15;
-   lbDireitosAutorais.Width   := Self.Width;
-   lbDireitosAutorais.Left    := 0;
+   lbDireitosAutorais.Caption       := 'Todos os direitos reservados a AABSoftware';
+   lbDireitosAutorais.Top           := Self.Top + 15;
+   lbDireitosAutorais.Width         := Self.Width;
+   lbDireitosAutorais.Left          := 0;
+   lbDireitosAutorais.Font.Color    := clWhite;
+   lbDireitosAutorais.Font.Style    := [fsBold];
+   lbDireitosAutorais.StyleElements := [seFont, seBorder];
 
-   lbInformacoes.Caption := EmptyStr;
-   lbInformacoes.Top     := Self.Height - 30;
-   lbInformacoes.Width   := Self.Width;
-   lbInformacoes.Left    := 0;
+   lbInformacoes.Caption       := EmptyStr;
+   lbInformacoes.Top           := Self.Height - 30;
+   lbInformacoes.Width         := Self.Width;
+   lbInformacoes.Left          := 0;
+   lbInformacoes.Font.Color    := clWhite;
+   lbInformacoes.Font.Style    := [fsBold];
+   lbInformacoes.StyleElements := [seFont, seBorder];
 
-   TimerShow.Enabled     := True;
+   TimerShow.Enabled := True;
 end;
 
 procedure TViewSplash.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -58,7 +68,13 @@ end;
 procedure TViewSplash.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
-   CanClose := not TimerShow.Enabled;
+   //CanClose := not TimerShow.Enabled;
+end;
+
+procedure TViewSplash.FormCreate(Sender: TObject);
+begin
+   ReportMemoryLeaksOnShutdown := True;
+   FController := TController.New;
 end;
 
 procedure TViewSplash.FormShow(Sender: TObject);
@@ -69,16 +85,9 @@ begin
 end;
 
 procedure TViewSplash.LoadProtocols;
-var
-  I: Integer;
 begin
-   for I := 1 to 10 do
-   begin
-      Self.WriteLoadMessages('Carregando protocolo ' + I.ToString);
-      Sleep(1000);
-   end;
-
-   Self.WriteLoadMessages('Sistema carregado');
+   FController.Splash.SetLabel(lbInformacoes).LoadProtocols;;
+   Sleep(1000);
    Self.Close;
 end;
 
