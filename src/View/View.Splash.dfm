@@ -1,10 +1,10 @@
 object ViewSplash: TViewSplash
   Left = 0
   Top = 0
-  BorderStyle = bsDialog
+  BorderStyle = bsNone
   Caption = 'ViewSplash'
-  ClientHeight = 223
-  ClientWidth = 356
+  ClientHeight = 252
+  ClientWidth = 362
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,8 +22,8 @@ object ViewSplash: TViewSplash
   object imgBack: TImage
     Left = 0
     Top = 0
-    Width = 356
-    Height = 223
+    Width = 362
+    Height = 252
     Align = alClient
     AutoSize = True
     Center = True

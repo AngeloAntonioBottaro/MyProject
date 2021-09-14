@@ -9,7 +9,7 @@ type
 
   iControllerSplash = interface
     ['{F56583C1-530B-48B5-914D-CDE9FC4966A1}']
-    function SetInformation(TProc<T>): iControllerSplash;
+    function DisplayInformation(aValue: TProc<String>): iControllerSplash;
     function LoadProtocols: iControllerSplash;
     function WriteLoadMessages(pMessage: String): iControllerSplash;
   end;

@@ -3,50 +3,46 @@ unit Controller.Splash;
 interface
 
 uses
-  Vcl.Controls,
-  Vcl.StdCtrls,
+  System.SysUtils,
   Controller.Interfaces;
 
 type
   TControllerSplash = class(TInterfacedObject, iControllerSplash)
   private
-    FLabelInformacoes: TLabel;
-    constructor Create(pLabel: TLabel); overload;
+    FDisplayInformation: TProc<String>;
+    constructor Create(pDisplayInformation: TProc<String>); overload;
   protected
-    function SetLabel(pLabel: TLabel): iControllerSplash;
+    function DisplayInformation(aValue: TProc<String>): iControllerSplash;
     function LoadProtocols: iControllerSplash;
     function WriteLoadMessages(pMessage: String): iControllerSplash;
   public
     class function New: iControllerSplash; overload;
-    class function New(pLabel: TLabel): iControllerSplash; overload;
+    class function New(pDisplayInformation: TProc<String>): iControllerSplash; overload;
   end;
 
 implementation
 
 { TControllerSplash }
 
-uses
-  System.SysUtils;
-
 class function TControllerSplash.New: iControllerSplash;
 begin
    Result := Self.Create;
 end;
 
-class function TControllerSplash.New(pLabel: TLabel): iControllerSplash;
+class function TControllerSplash.New(pDisplayInformation: TProc<String>): iControllerSplash;
 begin
-   Result := Self.Create(pLabel);
+   Result := Self.Create(pDisplayInformation);
 end;
 
-function TControllerSplash.SetLabel(pLabel: TLabel): iControllerSplash;
+function TControllerSplash.DisplayInformation(aValue: TProc<String>): iControllerSplash;
 begin
-   Result := Self;
-   FLabelInformacoes := pLabel;
+   Result              := Self;
+   FDisplayInformation := aValue;
 end;
 
-constructor TControllerSplash.Create(pLabel: TLabel);
+constructor TControllerSplash.Create(pDisplayInformation: TProc<String>);
 begin
-   Self.SetLabel(pLabel);
+   Self.DisplayInformation(pDisplayInformation);
 end;
 
 function TControllerSplash.LoadProtocols: iControllerSplash;
@@ -66,12 +62,8 @@ function TControllerSplash.WriteLoadMessages(
 begin
    Result := Self;
 
-   if(Assigned(FLabelInformacoes))then
-   begin
-      FLabelInformacoes.Caption := pMessage;
-      FLabelInformacoes.Refresh;
-      FLabelInformacoes.Repaint;
-   end;
+   if(Assigned(FDisplayInformation))then
+      FDisplayInformation(pMessage);
 end;
 
 end.

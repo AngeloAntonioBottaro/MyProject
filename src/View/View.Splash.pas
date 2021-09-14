@@ -45,7 +45,7 @@ begin
    lbDireitosAutorais.Top           := Self.Top + 15;
    lbDireitosAutorais.Width         := Self.Width;
    lbDireitosAutorais.Left          := 0;
-   lbDireitosAutorais.Font.Color    := clWhite;
+   lbDireitosAutorais.Font.Color    := clRed;
    lbDireitosAutorais.Font.Style    := [fsBold];
    lbDireitosAutorais.StyleElements := [seFont, seBorder];
 
@@ -53,7 +53,7 @@ begin
    lbInformacoes.Top           := Self.Height - 30;
    lbInformacoes.Width         := Self.Width;
    lbInformacoes.Left          := 0;
-   lbInformacoes.Font.Color    := clWhite;
+   lbInformacoes.Font.Color    := clRed;
    lbInformacoes.Font.Style    := [fsBold];
    lbInformacoes.StyleElements := [seFont, seBorder];
 
@@ -86,7 +86,7 @@ end;
 
 procedure TViewSplash.LoadProtocols;
 begin
-   FController.Splash.SetLabel(lbInformacoes).LoadProtocols;;
+   FController.Splash.DisplayInformation(WriteLoadMessages).LoadProtocols;
    Sleep(1000);
    Self.Close;
 end;
@@ -102,6 +102,7 @@ procedure TViewSplash.WriteLoadMessages(pMessage: String);
 begin
    lbInformacoes.Caption := pMessage;
    Application.ProcessMessages;
+   Sleep(1000);
 end;
 
 end.
