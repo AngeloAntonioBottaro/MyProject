@@ -37,7 +37,7 @@ implementation
 
 {$R *.dfm}
 
-uses View.Main, Controller;
+uses View.Main, Controller.Factory;
 
 procedure TViewSplash.ConfComponents;
 begin
@@ -45,17 +45,21 @@ begin
    lbDireitosAutorais.Top           := Self.Top + 15;
    lbDireitosAutorais.Width         := Self.Width;
    lbDireitosAutorais.Left          := 0;
-   lbDireitosAutorais.Font.Color    := clRed;
+   lbDireitosAutorais.Color         := clWhite;
+   lbDireitosAutorais.Font.Color    := clWhite;
+   lbDireitosAutorais.Font.Name     := 'Tahoma';
    lbDireitosAutorais.Font.Style    := [fsBold];
-   lbDireitosAutorais.StyleElements := [seFont, seBorder];
+   lbDireitosAutorais.StyleElements := lbDireitosAutorais.StyleElements - [seClient];
 
    lbInformacoes.Caption       := EmptyStr;
    lbInformacoes.Top           := Self.Height - 30;
    lbInformacoes.Width         := Self.Width;
    lbInformacoes.Left          := 0;
-   lbInformacoes.Font.Color    := clRed;
+   lbInformacoes.Color         := clWhite;
+   lbInformacoes.Font.Color    := clWhite;
+   lbInformacoes.Font.Name     := 'Tahoma';
    lbInformacoes.Font.Style    := [fsBold];
-   lbInformacoes.StyleElements := [seFont, seBorder];
+   lbInformacoes.StyleElements := lbInformacoes.StyleElements - [seClient];
 
    TimerShow.Enabled := True;
 end;
@@ -63,18 +67,18 @@ end;
 procedure TViewSplash.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
    Application.CreateForm(TViewMain, ViewMain);
+   Self.Visible := False;
 end;
 
 procedure TViewSplash.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
-   //CanClose := not TimerShow.Enabled;
+   CanClose := not TimerShow.Enabled;
 end;
 
 procedure TViewSplash.FormCreate(Sender: TObject);
 begin
-   ReportMemoryLeaksOnShutdown := True;
-   FController := TController.New;
+   FController := TControllerFactory.New;
 end;
 
 procedure TViewSplash.FormShow(Sender: TObject);
@@ -86,8 +90,12 @@ end;
 
 procedure TViewSplash.LoadProtocols;
 begin
-   FController.Splash.DisplayInformation(WriteLoadMessages).LoadProtocols;
-   Sleep(1000);
+   FController
+    .Forms
+     .Splash
+      .DisplayInformation(WriteLoadMessages)
+      .LoadProtocols;
+
    Self.Close;
 end;
 

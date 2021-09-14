@@ -128,8 +128,11 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\Controller\Controller.Interfaces.pas"/>
-        <DCCReference Include="src\Controller\Controller.pas"/>
-        <DCCReference Include="src\Controller\Controller.Splash.pas"/>
+        <DCCReference Include="src\Controller\Controller.Factory.pas"/>
+        <DCCReference Include="src\Model\Forms\Model.Forms.Splash.pas"/>
+        <DCCReference Include="..\Bibliotecas\Behaviors\Model.Behaviors.pas"/>
+        <DCCReference Include="src\Model\Forms\Model.Forms.Factory.pas"/>
+        <DCCReference Include="src\Model\Forms\Model.Forms.Interfaces.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

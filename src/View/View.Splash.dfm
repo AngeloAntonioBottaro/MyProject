@@ -3,8 +3,8 @@ object ViewSplash: TViewSplash
   Top = 0
   BorderStyle = bsNone
   Caption = 'ViewSplash'
-  ClientHeight = 252
-  ClientWidth = 362
+  ClientHeight = 171
+  ClientWidth = 273
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,8 +22,8 @@ object ViewSplash: TViewSplash
   object imgBack: TImage
     Left = 0
     Top = 0
-    Width = 362
-    Height = 252
+    Width = 273
+    Height = 171
     Align = alClient
     AutoSize = True
     Center = True
@@ -1451,38 +1451,44 @@ object ViewSplash: TViewSplash
     ExplicitHeight = 600
   end
   object lbInformacoes: TLabel
-    Left = 104
-    Top = 200
+    Left = 48
+    Top = 128
     Width = 172
     Height = 25
     Alignment = taCenter
     AutoSize = False
     Caption = 'LbInformacoes'
+    Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWhite
-    Font.Height = -13
+    Font.Color = clWindowText
+    Font.Height = -11
     Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Style = []
+    ParentColor = False
     ParentFont = False
     Layout = tlCenter
-    StyleElements = [seFont, seBorder]
+    WordWrap = True
+    StyleElements = []
   end
   object lbDireitosAutorais: TLabel
-    Left = 96
+    Left = 40
     Top = 24
     Width = 180
     Height = 13
     Alignment = taCenter
     AutoSize = False
     Caption = 'lbDireitosAutorais'
+    Color = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWhite
     Font.Height = -9
-    Font.Name = 'Tahoma'
+    Font.Name = 'System'
     Font.Style = [fsBold]
+    ParentColor = False
     ParentFont = False
     Layout = tlCenter
-    StyleElements = [seFont, seBorder]
+    WordWrap = True
+    StyleElements = []
   end
   object TimerShow: TTimer
     Enabled = False
