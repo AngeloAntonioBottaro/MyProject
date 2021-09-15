@@ -68,6 +68,8 @@ procedure TViewSplash.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
    Application.CreateForm(TViewMain, ViewMain);
    Self.Visible := False;
+   Self.Hide;
+   Self.Refresh;
 end;
 
 procedure TViewSplash.FormCloseQuery(Sender: TObject;

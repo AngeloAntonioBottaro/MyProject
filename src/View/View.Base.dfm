@@ -13,6 +13,7 @@ object ViewBase: TViewBase
   OldCreateOrder = False
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
 end

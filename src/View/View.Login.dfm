@@ -1,8 +1,7 @@
 inherited ViewLogin: TViewLogin
-  BorderStyle = bsSingle
-  Caption = 'ViewLogin'
-  ClientHeight = 142
-  ClientWidth = 337
+  Caption = 'Login'
+  ClientHeight = 132
+  ClientWidth = 327
   ExplicitWidth = 343
   ExplicitHeight = 171
   PixelsPerInch = 96

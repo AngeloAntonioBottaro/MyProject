@@ -2,7 +2,7 @@ unit Controller.Interfaces;
 
 interface
 
-uses Model.Forms.Interfaces;
+uses Controller.Forms.Interfaces;
 
 type
   iController = interface

@@ -1,10 +1,10 @@
-unit Controller.Splash;
+unit Controller.Forms.Splash;
 
 interface
 
 uses
   System.SysUtils,
-  Controller.Interfaces;
+  Controller.Forms.Interfaces;
 
 type
   TControllerSplash = class(TInterfacedObject, iControllerSplash)

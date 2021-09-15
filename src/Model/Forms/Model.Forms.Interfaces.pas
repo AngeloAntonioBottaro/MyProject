@@ -2,21 +2,18 @@ unit Model.Forms.Interfaces;
 
 interface
 
-uses
-  System.SysUtils;
-
 type
+  iModelFormsMain = interface
+   ['{8F7D0267-861A-411B-9AE3-822BFEBC384C}']
+   function LoadConfiguration: iModelFormsMain;
 
-  iControllerSplash = interface
-    ['{F56583C1-530B-48B5-914D-CDE9FC4966A1}']
-    function DisplayInformation(aValue: TProc<String>): iControllerSplash;
-    function LoadProtocols: iControllerSplash;
-    function WriteLoadMessages(pMessage: String): iControllerSplash;
+   function MenuCadastroCliente: Boolean;
+   function MenuCadastroProduto: Boolean;
   end;
 
-  iControllerForms = interface
-   ['{6E75B356-E2F4-4CA0-8AB3-A245ABA3A0D8}']
-    function Splash: iControllerSplash;
+  iModelForms = interface
+   ['{CAC681AF-FF41-4EEC-866B-756323C96FC0}']
+   function Main: iModelFormsMain;
   end;
 
 implementation

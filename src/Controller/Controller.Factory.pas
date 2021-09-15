@@ -4,7 +4,7 @@ interface
 
 uses
   Controller.Interfaces,
-  Model.Forms.Interfaces;
+  Controller.Forms.Interfaces;
 
 type
   TControllerFactory = class(TInterfacedObject, iController)
@@ -20,7 +20,7 @@ implementation
 
 { TController }
 
-uses Model.Forms.Factory;
+uses Controller.Forms.Factory;
 
 class function TControllerFactory.New: iController;
 begin

@@ -3,18 +3,25 @@ unit View.Main;
 interface
 
 uses
+  View.Base,
   Winapi.Windows, Winapi.Messages,
   System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,
+  Controller.Interfaces;
 
 type
-  TViewMain = class(TForm)
+  TViewMain = class(TViewBase)
     MainMenu1: TMainMenu;
+    Cadastros1: TMenuItem;
+    CadastrosClientes1: TMenuItem;
+    CadastrosProdutos1: TMenuItem;
     procedure FormCreate(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
   private
+    FController: icontroller;
+
     procedure SystemTerminate;
+    procedure LoadForm;
     { Private declarations }
   public
     { Public declarations }
@@ -27,29 +34,42 @@ implementation
 
 {$R *.dfm}
 
-uses Utils.MyLibrary, View.Login;
+uses Controller.Factory, Utils.MyLibrary, View.Login, Utils.Versao;
 
 procedure TViewMain.FormCreate(Sender: TObject);
-var
-  vContinue: Boolean;
 begin
-   Utils.MyLibrary.ConfForm(Self);
+   Utils.MyLibrary.ConfForm(Self, tpMaximizadoMinimizar);
+   Self.Caption := Application.Title + TUtilsVersao.CompleteVersion;
 
+   FController := TControllerFactory.New;
+end;
+
+procedure TViewMain.FormShow(Sender: TObject);
+var
+  vLogado: Boolean;
+begin
    if(ViewLogin = nil)then Application.CreateForm(TViewLogin, ViewLogin);
    try
-     vContinue := (ViewLogin.ShowModal <> mrCancel);
+     vLogado := (ViewLogin.ShowModal = mrOk);
    finally
      FreeAndNil(ViewLogin);
    end;
 
-   if(not vContinue)then
+   if(not vLogado)then
       Self.SystemTerminate;
+
+   Self.LoadForm;
 end;
 
-procedure TViewMain.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TViewMain.LoadForm;
 begin
-   Utils.MyLibrary.DefaultKeyDown(Self, Key, Shift);
+   FController
+    .Forms
+     .Main
+      .LoadMenus;
+
+   CadastrosClientes1.Visible := FController.Forms.Main.This.MenuCadastroCliente;
+   CadastrosProdutos1.Visible := FController.Forms.Main.This.MenuCadastroProduto;
 end;
 
 procedure TViewMain.SystemTerminate;

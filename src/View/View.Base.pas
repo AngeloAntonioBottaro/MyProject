@@ -11,6 +11,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -35,6 +36,15 @@ procedure TViewBase.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
    DefaultKeyDown(Self, Key, Shift);
+end;
+
+procedure TViewBase.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+   if(Key = #13)then
+   begin
+      Perform(CM_DialogKey, VK_TAB, 0);
+      Key := #0;
+   end;
 end;
 
 end.
