@@ -9,8 +9,8 @@ uses
 
 type
   TViewLogin = class(TViewBase)
-    lbUsuario: TLabeledEdit;
-    lbSenha: TLabeledEdit;
+    edtUsuarioLogin: TLabeledEdit;
+    edtUsuarioSenha: TLabeledEdit;
     btnConectar: TButton;
     btnCancelar: TButton;
     Image1: TImage;
@@ -37,6 +37,18 @@ end;
 
 procedure TViewLogin.btnConectarClick(Sender: TObject);
 begin
+   FController
+     .Forms
+       .Login
+        .This
+        .UsuarioLogin(edtUsuarioLogin.Text)
+        .UsuarioSenha(edtUsuarioSenha.Text);
+
+   FController
+     .Forms
+       .Login
+         .LoginIn;
+
    Self.Close;
    ModalResult := mrOk;
 end;

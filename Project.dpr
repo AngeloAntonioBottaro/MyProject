@@ -28,7 +28,9 @@ uses
   Model.Factory in 'src\Model\Model.Factory.pas',
   Model.Forms.Interfaces in 'src\Model\Forms\Model.Forms.Interfaces.pas',
   Model.Forms.Factory in 'src\Model\Forms\Model.Forms.Factory.pas',
-  Model.Forms.Main in 'src\Model\Forms\Model.Forms.Main.pas';
+  Model.Forms.Main in 'src\Model\Forms\Model.Forms.Main.pas',
+  Controller.Forms.Login in 'src\Controller\Forms\Controller.Forms.Login.pas',
+  Model.Forms.Login in 'src\Model\Forms\Model.Forms.Login.pas';
 
 {$R *.res}
 

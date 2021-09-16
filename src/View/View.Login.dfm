@@ -117,7 +117,7 @@ inherited ViewLogin: TViewLogin
       2AFF056C899DA9ACA365D80000000049454E44AE426082}
     Proportional = True
   end
-  object lbUsuario: TLabeledEdit
+  object edtUsuarioLogin: TLabeledEdit
     Left = 67
     Top = 24
     Width = 231
@@ -127,7 +127,7 @@ inherited ViewLogin: TViewLogin
     EditLabel.Caption = 'Usu'#225'rio'
     TabOrder = 0
   end
-  object lbSenha: TLabeledEdit
+  object edtUsuarioSenha: TLabeledEdit
     Left = 67
     Top = 67
     Width = 231

@@ -10,9 +10,10 @@ type
     FMenuCadastroCliente: Boolean;
     FMenuCadastroProduto: Boolean;
   protected
-    function LoadConfiguration: iModelFormsMain;
-    function MenuCadastroCliente: Boolean;
-    function MenuCadastroProduto: Boolean;
+    function MenuCadastroCliente(aValue: Boolean): iModelFormsMain; overload;
+    function MenuCadastroCliente: Boolean; overload;
+    function MenuCadastroProduto(aValue: Boolean): iModelFormsMain; overload;
+    function MenuCadastroProduto: Boolean; overload;
   public
     class function New: iModelFormsMain;
   end;
@@ -26,17 +27,23 @@ begin
    Result := Self.Create;
 end;
 
-function TModelFormsMain.LoadConfiguration: iModelFormsMain;
+function TModelFormsMain.MenuCadastroProduto(
+  aValue: Boolean): iModelFormsMain;
 begin
-   Result := Self;
-
-   FMenuCadastroCliente := True;
-   FMenuCadastroProduto := False;
+   Result               := Self;
+   FMenuCadastroProduto := aValue;
 end;
 
 function TModelFormsMain.MenuCadastroCliente: Boolean;
 begin
    Result := FMenuCadastroCliente;
+end;
+
+function TModelFormsMain.MenuCadastroCliente(
+  aValue: Boolean): iModelFormsMain;
+begin
+   Result               := Self;
+   FMenuCadastroCliente := aValue;
 end;
 
 function TModelFormsMain.MenuCadastroProduto: Boolean;

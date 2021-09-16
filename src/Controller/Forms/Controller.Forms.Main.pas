@@ -45,7 +45,9 @@ end;
 function TControllerFormsMain.LoadMenus: iControllerMain;
 begin
    Result := Self;
-   FModel.Forms.Main.LoadConfiguration;
+
+   FModel.Forms.Main.MenuCadastroCliente(True);
+   FModel.Forms.Main.MenuCadastroProduto(True);
 end;
 
 

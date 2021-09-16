@@ -7,7 +7,7 @@ uses
   Controller.Forms.Interfaces;
 
 type
-  TControllerSplash = class(TInterfacedObject, iControllerSplash)
+  TControllerFormsSplash = class(TInterfacedObject, iControllerSplash)
   private
     FDisplayInformation: TProc<String>;
     constructor Create(pDisplayInformation: TProc<String>); overload;
@@ -24,28 +24,28 @@ implementation
 
 { TControllerSplash }
 
-class function TControllerSplash.New: iControllerSplash;
+class function TControllerFormsSplash.New: iControllerSplash;
 begin
    Result := Self.Create;
 end;
 
-class function TControllerSplash.New(pDisplayInformation: TProc<String>): iControllerSplash;
+class function TControllerFormsSplash.New(pDisplayInformation: TProc<String>): iControllerSplash;
 begin
    Result := Self.Create(pDisplayInformation);
 end;
 
-function TControllerSplash.DisplayInformation(aValue: TProc<String>): iControllerSplash;
+function TControllerFormsSplash.DisplayInformation(aValue: TProc<String>): iControllerSplash;
 begin
    Result              := Self;
    FDisplayInformation := aValue;
 end;
 
-constructor TControllerSplash.Create(pDisplayInformation: TProc<String>);
+constructor TControllerFormsSplash.Create(pDisplayInformation: TProc<String>);
 begin
    Self.DisplayInformation(pDisplayInformation);
 end;
 
-function TControllerSplash.LoadProtocols: iControllerSplash;
+function TControllerFormsSplash.LoadProtocols: iControllerSplash;
 var
   I: Integer;
 begin
@@ -57,7 +57,7 @@ begin
    Self.WriteLoadMessages('Sistema carregado');
 end;
 
-function TControllerSplash.WriteLoadMessages(
+function TControllerFormsSplash.WriteLoadMessages(
   pMessage: String): iControllerSplash;
 begin
    Result := Self;

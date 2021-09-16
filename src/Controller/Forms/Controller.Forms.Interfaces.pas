@@ -21,8 +21,16 @@ type
    function This: iModelFormsMain;
   end;
 
+  iControllerLogin = interface
+   ['{5D414764-D382-4986-AA1C-ED9264887B4B}']
+   function LoginIn: iControllerLogin;
+   function IsLogged: Boolean;
+   function This: iModelFormsLogin;
+  end;
+
   iControllerForms = interface
    ['{6E75B356-E2F4-4CA0-8AB3-A245ABA3A0D8}']
+   function Login: iControllerLogin;
    function Main: iControllerMain;
    function Splash: iControllerSplash;
   end;
