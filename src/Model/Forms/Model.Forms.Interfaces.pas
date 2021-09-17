@@ -2,34 +2,25 @@ unit Model.Forms.Interfaces;
 
 interface
 
+uses System.SysUtils;
+
 type
-  iModelFormsMain = interface
-   ['{8F7D0267-861A-411B-9AE3-822BFEBC384C}']
-   function MenuCadastroCliente(aValue: Boolean): iModelFormsMain; overload;
-   function MenuCadastroCliente: Boolean; overload;
-   function MenuCadastroProduto(aValue: Boolean): iModelFormsMain; overload;
-   function MenuCadastroProduto: Boolean; overload;
+  iModelFormsSplash = interface
+   ['{B36FD284-E0A3-4C21-AB5F-6334B02FD0B8}']
+   function DisplayInformation(aValue: TProc<string>): iModelFormsSplash;
+   function LoadProtocols: iModelFormsSplash;
+   function WriteInformation(aValue: String): iModelFormsSplash;
   end;
 
-  iModelFormsLogin = interface
-   ['{E28505B7-546C-421A-93F5-8D82BD825D33}']
-   function UsuarioId(aValue: Integer): iModelFormsLogin; overload;
-   function UsuarioId(aValue: string): iModelFormsLogin; overload;
-   function UsuarioId: Integer; overload;
-   function UsuarioNome(aValue: string): iModelFormsLogin; overload;
-   function UsuarioNome: string; overload;
-   function UsuarioLogin(aValue: string): iModelFormsLogin; overload;
-   function UsuarioLogin: string; overload;
-   function UsuarioSenha(aValue: string): iModelFormsLogin; overload;
-   function UsuarioSenha: string; overload;
-   function Logged(aValue: Boolean): iModelFormsLogin; overload;
-   function Logged: Boolean; overload;
+  iModelMain = interface
+   ['{89FC41EC-6D0F-4218-B00B-939885942B46}']
+   function LoadParameters: iModelMain;
   end;
 
   iModelForms = interface
-   ['{CAC681AF-FF41-4EEC-866B-756323C96FC0}']
-   function Login: iModelFormsLogin;
-   function Main: iModelFormsMain;
+   ['{25C14922-C8CE-44EA-B8D8-3430ABD75318}']
+   function Main: iModelMain;
+   function Splash: iModelFormsSplash;
   end;
 
 implementation

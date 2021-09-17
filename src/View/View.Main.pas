@@ -48,8 +48,7 @@ begin
      FreeAndNil(ViewLogin);
    end;
 
-   if(not FController.Forms.Login.IsLogged)then
-      Self.SystemTerminate;
+   //if(not FController.Forms.Login.IsLogged)then Self.SystemTerminate;
 
    Self.LoadForm;
 end;
@@ -59,10 +58,11 @@ begin
    FController
     .Forms
      .Main
-      .LoadMenus;
+      .LoadParameters;
 
-   CadastrosClientes1.Visible := FController.Forms.Main.This.MenuCadastroCliente;
-   CadastrosProdutos1.Visible := FController.Forms.Main.This.MenuCadastroProduto;
+   //MENUS
+   CadastrosClientes1.Visible := FController.Entities.PermissoesUsuario.CadastroCliente;
+   CadastrosProdutos1.Visible := FController.Entities.PermissoesUsuario.CadastroProduto;
 end;
 
 procedure TViewMain.SystemTerminate;

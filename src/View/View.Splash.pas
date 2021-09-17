@@ -24,7 +24,7 @@ type
 
     procedure LoadProtocols;
     procedure ConfComponents;
-    procedure WriteLoadMessages(pMessage: String);
+    procedure WriteMessages(pMessage: String);
     { Private declarations }
   public
     { Public declarations }
@@ -95,7 +95,7 @@ begin
    FController
     .Forms
      .Splash
-      .DisplayInformation(WriteLoadMessages)
+      .DisplayInformation(WriteMessages)
       .LoadProtocols;
 
    Self.Close;
@@ -108,7 +108,7 @@ begin
    Self.LoadProtocols;
 end;
 
-procedure TViewSplash.WriteLoadMessages(pMessage: String);
+procedure TViewSplash.WriteMessages(pMessage: String);
 begin
    lbInformacoes.Caption := pMessage;
    Application.ProcessMessages;

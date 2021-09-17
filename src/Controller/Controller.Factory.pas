@@ -4,14 +4,17 @@ interface
 
 uses
   Controller.Interfaces,
-  Controller.Forms.Interfaces;
+  Model.Entities.Interfaces,
+  Model.Forms.Interfaces;
 
 type
   TControllerFactory = class(TInterfacedObject, iController)
   private
-    FForms: iControllerForms;
+    FEntities: iModelEntities;
+    FForms: iModelForms;
   protected
-    function Forms: iControllerForms;
+    function Forms: iModelForms;
+    function Entities: iModelEntities;
   public
     class function New: iController;
   end;
@@ -20,19 +23,29 @@ implementation
 
 { TController }
 
-uses Controller.Forms.Factory;
+uses
+  Model.Entities.Factory,
+  Model.Forms.Factory;
+
+function TControllerFactory.Forms: iModelForms;
+begin
+   if(not Assigned(FForms))then
+      FForms := TModelFormsFactory.New;
+
+   Result := FForms;
+end;
 
 class function TControllerFactory.New: iController;
 begin
    Result := Self.Create;
 end;
 
-function TControllerFactory.Forms: iControllerForms;
+function TControllerFactory.Entities: iModelEntities;
 begin
-   if(not Assigned(FForms))then
-      FForms := TControllerFormsFactory.New;
+   if(not Assigned(FEntities))then
+      FEntities := TModelEntitiesFactory.New;
 
-   Result := FForms;
+   Result := FEntities;
 end;
 
 end.

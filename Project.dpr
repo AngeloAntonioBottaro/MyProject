@@ -16,21 +16,17 @@ uses
   SearchScreen.View in '..\Bibliotecas\SearchScreen\src\SearchScreen.View.pas' {FrmBuscaComponentesTela},
   Controller.Interfaces in 'src\Controller\Controller.Interfaces.pas',
   Controller.Factory in 'src\Controller\Controller.Factory.pas',
-  Controller.Forms.Splash in 'src\Controller\Forms\Controller.Forms.Splash.pas',
   Model.Behaviors in '..\Bibliotecas\Behaviors\Model.Behaviors.pas',
-  Controller.Forms.Factory in 'src\Controller\Forms\Controller.Forms.Factory.pas',
-  Controller.Forms.Interfaces in 'src\Controller\Forms\Controller.Forms.Interfaces.pas',
-  Controller.Forms.Main in 'src\Controller\Forms\Controller.Forms.Main.pas',
   Utils.Versao in 'src\Utils\Utils.Versao.pas',
   Utils.Variables in 'src\Utils\Utils.Variables.pas',
   Utils.Constants in 'src\Utils\Utils.Constants.pas',
-  Model.Interfaces in 'src\Model\Model.Interfaces.pas',
-  Model.Factory in 'src\Model\Model.Factory.pas',
+  Model.Entities.Interfaces in 'src\Model\Entities\Model.Entities.Interfaces.pas',
+  Model.Entities.Factory in 'src\Model\Entities\Model.Entities.Factory.pas',
+  Model.Entities.PermissoesUsuario in 'src\Model\Entities\Model.Entities.PermissoesUsuario.pas',
   Model.Forms.Interfaces in 'src\Model\Forms\Model.Forms.Interfaces.pas',
   Model.Forms.Factory in 'src\Model\Forms\Model.Forms.Factory.pas',
-  Model.Forms.Main in 'src\Model\Forms\Model.Forms.Main.pas',
-  Controller.Forms.Login in 'src\Controller\Forms\Controller.Forms.Login.pas',
-  Model.Forms.Login in 'src\Model\Forms\Model.Forms.Login.pas';
+  Model.Forms.Splash in 'src\Model\Forms\Model.Forms.Splash.pas',
+  Model.Forms.Main in 'src\Model\Forms\Model.Forms.Main.pas';
 
 {$R *.res}
 

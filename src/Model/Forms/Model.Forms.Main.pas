@@ -2,53 +2,45 @@ unit Model.Forms.Main;
 
 interface
 
-uses Model.Forms.Interfaces;
+uses
+  Model.Forms.Interfaces,
+  Model.Entities.Interfaces;
 
 type
-  TModelFormsMain = class(TInterfacedObject, iModelFormsMain)
+  TModelFormsMain = class(TInterfacedObject, iModelMain)
   private
-    FMenuCadastroCliente: Boolean;
-    FMenuCadastroProduto: Boolean;
+    FEntities: iModelEntities;
   protected
-    function MenuCadastroCliente(aValue: Boolean): iModelFormsMain; overload;
-    function MenuCadastroCliente: Boolean; overload;
-    function MenuCadastroProduto(aValue: Boolean): iModelFormsMain; overload;
-    function MenuCadastroProduto: Boolean; overload;
+    constructor Create;
+    function LoadParameters: iModelMain;
   public
-    class function New: iModelFormsMain;
+    class function New: iModelMain;
   end;
 
 implementation
 
 { TModelFormsMain }
 
-class function TModelFormsMain.New: iModelFormsMain;
+uses
+   Model.Entities.Factory;
+
+class function TModelFormsMain.New: iModelMain;
 begin
    Result := Self.Create;
 end;
 
-function TModelFormsMain.MenuCadastroProduto(
-  aValue: Boolean): iModelFormsMain;
+constructor TModelFormsMain.Create;
 begin
-   Result               := Self;
-   FMenuCadastroProduto := aValue;
+   if(not Assigned(FEntities))then
+      FEntities := TModelEntitiesFactory.New;
 end;
 
-function TModelFormsMain.MenuCadastroCliente: Boolean;
+function TModelFormsMain.LoadParameters: iModelMain;
 begin
-   Result := FMenuCadastroCliente;
-end;
+   Result := Self;
 
-function TModelFormsMain.MenuCadastroCliente(
-  aValue: Boolean): iModelFormsMain;
-begin
-   Result               := Self;
-   FMenuCadastroCliente := aValue;
-end;
-
-function TModelFormsMain.MenuCadastroProduto: Boolean;
-begin
-   Result := FMenuCadastroProduto;
+   FEntities.PermissoesUsuario.CadastroCliente(True);
+   FEntities.PermissoesUsuario.CadastroCliente(True);
 end;
 
 end.

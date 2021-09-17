@@ -2,17 +2,16 @@ unit Model.Forms.Factory;
 
 interface
 
-uses
-  Model.Forms.Interfaces;
+uses Model.Forms.Interfaces;
 
 type
   TModelFormsFactory = class(TInterfacedObject, iModelForms)
   private
-    FMain: iModelFormsMain;
-    FLogin: iModelFormsLogin;
+    FMain: iModelMain;
+    FSplash: iModelFormsSplash;
   protected
-    function Login: iModelFormsLogin;
-    function Main: iModelFormsMain;
+    function Main: iModelMain;
+    function Splash: iModelFormsSplash;
   public
     class function New: iModelForms;
   end;
@@ -22,28 +21,28 @@ implementation
 { TModelFormsFactory }
 
 uses
-  Model.Forms.Main,
-  Model.Forms.Login;
+  Model.Forms.Splash,
+  Model.Forms.Main;
+
+function TModelFormsFactory.Main: iModelMain;
+begin
+   if(not Assigned(FMain))then
+      FMain := TModelFormsMain.New;
+
+   Result := FMain;
+end;
 
 class function TModelFormsFactory.New: iModelForms;
 begin
    Result := Self.Create;
 end;
 
-function TModelFormsFactory.Login: iModelFormsLogin;
+function TModelFormsFactory.Splash: iModelFormsSplash;
 begin
-   if(not Assigned(FLogin))then
-      FLogin := TModelFormsLogin.New;
+   if(not Assigned(FSplash))then
+      FSplash := TModelFormsSplash.New;
 
-   Result := FLogin;
-end;
-
-function TModelFormsFactory.Main: iModelFormsMain;
-begin
-   if(not Assigned(FMain))then
-      FMain := TModelFormsMain.New;
-
-   Result := FMain;
+   Result := FSplash;
 end;
 
 end.

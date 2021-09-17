@@ -37,18 +37,6 @@ end;
 
 procedure TViewLogin.btnConectarClick(Sender: TObject);
 begin
-   FController
-     .Forms
-       .Login
-        .This
-        .UsuarioLogin(edtUsuarioLogin.Text)
-        .UsuarioSenha(edtUsuarioSenha.Text);
-
-   FController
-     .Forms
-       .Login
-         .LoginIn;
-
    Self.Close;
    ModalResult := mrOk;
 end;
