@@ -10,8 +10,11 @@ type
   TModelFormsSplash = class(TInterfacedObject, iModelFormsSplash)
   private
      FDisplayInformation: TProc<string>;
+     FLoadingComplete: Boolean;
   protected
+    constructor Create;
     function DisplayInformation(aValue: TProc<string>): iModelFormsSplash;
+    function LoadingComplete: Boolean;
     function LoadProtocols: iModelFormsSplash;
     function WriteInformation(aValue: String): iModelFormsSplash;
   public
@@ -22,11 +25,21 @@ implementation
 
 { TModelFormsSplash }
 
+constructor TModelFormsSplash.Create;
+begin
+   FLoadingComplete := False;
+end;
+
 function TModelFormsSplash.DisplayInformation(
   aValue: TProc<string>): iModelFormsSplash;
 begin
    Result              := Self;
    FDisplayInformation := aValue;
+end;
+
+function TModelFormsSplash.LoadingComplete: Boolean;
+begin
+   Result := FLoadingComplete;
 end;
 
 function TModelFormsSplash.LoadProtocols: iModelFormsSplash;
@@ -35,8 +48,17 @@ var
 begin
    Result := Self;
 
-   for I := 0 to 3 do
-      Self.WriteInformation('Estabelecendo parâmetros do protocolo ' + I.ToString);
+   try
+     for I := 0 to 3 do
+        Self.WriteInformation('Estabelecendo parâmetros do protocolo ' + I.ToString);
+
+     FLoadingComplete := True;
+   except on E: Exception do
+    begin
+      Self.WriteInformation('Falha no processamento dos protocolos');
+      Exit;
+    end;
+   end;
 end;
 
 class function TModelFormsSplash.New: iModelFormsSplash;

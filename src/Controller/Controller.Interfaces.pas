@@ -7,10 +7,10 @@ uses
   Model.Forms.Interfaces;
 
 type
-  iController = interface
+  iControllerFactory = interface
     ['{1CC99F8B-A547-49B0-A908-37A82888364C}']
-    function Forms: iModelForms;
-    function Entities: iModelEntities;
+    function Entities: iModelEntitiesFactory;
+    function Forms: iModelFormsFactory;
   end;
 
 implementation

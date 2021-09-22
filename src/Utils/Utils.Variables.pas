@@ -2,12 +2,11 @@ unit Utils.Variables;
 
 interface
 
-type
-  TUtilsVariables = class
-  private
-  public
+var
 
-  end;
+  V_UsuarioLogadoId: Integer;
+
+  V_UsuarioNome: string;
 
 implementation
 

@@ -5,22 +5,26 @@ interface
 uses Model.Entities.Interfaces;
 
 type
-  TModelEntitiesFactory = class(TInterfacedObject, iModelEntities)
+  TModelEntitiesFactory = class(TInterfacedObject, iModelEntitiesFactory)
   private
     FPermissoesUsuario: iModelEntitiesPermissoesUsuario;
+    FUsuario: iModelEntitiesUsuario;
   protected
+    function Usuario: iModelEntitiesUsuario;
     function PermissoesUsuario: iModelEntitiesPermissoesUsuario;
   public
-    class function New: iModelEntities;
+    class function New: iModelEntitiesFactory;
   end;
 
 implementation
 
 { TModelEntitiesFactory }
 
-uses Model.Entities.PermissoesUsuario;
+uses
+  Model.Entities.PermissoesUsuario,
+  Model.Entities.Usuario;
 
-class function TModelEntitiesFactory.New: iModelEntities;
+class function TModelEntitiesFactory.New: iModelEntitiesFactory;
 begin
    Result := Self.Create;
 end;
@@ -31,6 +35,14 @@ begin
       FPermissoesUsuario := TModelEntitiesPermissoesUsuario.New;
 
    Result := FPermissoesUsuario;
+end;
+
+function TModelEntitiesFactory.Usuario: iModelEntitiesUsuario;
+begin
+   if(not Assigned(FUsuario))then
+      FUsuario := TModelEntitiesUsuario.New;
+
+   Result := FUsuario;
 end;
 
 end.

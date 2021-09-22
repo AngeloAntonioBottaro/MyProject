@@ -5,15 +5,13 @@ interface
 uses Model.Forms.Interfaces;
 
 type
-  TModelFormsFactory = class(TInterfacedObject, iModelForms)
+  TModelFormsFactory = class(TInterfacedObject, iModelFormsFactory)
   private
-    FMain: iModelMain;
     FSplash: iModelFormsSplash;
   protected
-    function Main: iModelMain;
     function Splash: iModelFormsSplash;
   public
-    class function New: iModelForms;
+    class function New: iModelFormsFactory;
   end;
 
 implementation
@@ -21,18 +19,9 @@ implementation
 { TModelFormsFactory }
 
 uses
-  Model.Forms.Splash,
-  Model.Forms.Main;
+  Model.Forms.Splash;
 
-function TModelFormsFactory.Main: iModelMain;
-begin
-   if(not Assigned(FMain))then
-      FMain := TModelFormsMain.New;
-
-   Result := FMain;
-end;
-
-class function TModelFormsFactory.New: iModelForms;
+class function TModelFormsFactory.New: iModelFormsFactory;
 begin
    Result := Self.Create;
 end;

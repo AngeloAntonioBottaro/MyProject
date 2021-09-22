@@ -4,8 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Base, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.Imaging.pngimage;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.Imaging.pngimage, View.Base,
+  Controller.Factory;
 
 type
   TViewLogin = class(TViewBase)
@@ -36,9 +37,17 @@ begin
 end;
 
 procedure TViewLogin.btnConectarClick(Sender: TObject);
+var
+ vController: iControllerFactory;
 begin
-   Self.Close;
-   ModalResult := mrOk;
+   vController := TControllerFactory.New;
+
+
+   //if(FController.Forms.Login.LoggedIn)then
+   //begin
+      Self.Close;
+      ModalResult := mrOk;
+   //end;
 end;
 
 end.

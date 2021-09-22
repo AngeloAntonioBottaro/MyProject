@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Controller.Interfaces;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
 
 type
   TViewBase = class(TForm)
@@ -15,7 +15,6 @@ type
   private
     { Private declarations }
   public
-    FController: icontroller;
     { Public declarations }
   end;
 
@@ -26,13 +25,11 @@ implementation
 
 {$R *.dfm}
 
-uses Controller.Factory, Utils.MyLibrary;
+uses Utils.MyLibrary;
 
 procedure TViewBase.FormCreate(Sender: TObject);
 begin
    Utils.MyLibrary.ConfForm(Self);
-
-   FController := TControllerFactory.New;
 end;
 
 procedure TViewBase.FormKeyDown(Sender: TObject; var Key: Word;

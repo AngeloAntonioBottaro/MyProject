@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.Imaging.jpeg,
-  Controller.Interfaces;
+  Controller.Factory;
 
 type
   TViewSplash = class(TForm)
@@ -20,11 +20,11 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
   private
-    FController: iController;
-
+    FController: iControllerFactory;
     procedure LoadProtocols;
     procedure ConfComponents;
     procedure WriteMessages(pMessage: String);
+    procedure SystemTerminate;
     { Private declarations }
   public
     { Public declarations }
@@ -37,7 +37,19 @@ implementation
 
 {$R *.dfm}
 
-uses View.Main, Controller.Factory;
+uses View.Main;
+
+procedure TViewSplash.FormCreate(Sender: TObject);
+begin
+   FController := TControllerFactory.New;
+end;
+
+procedure TViewSplash.FormShow(Sender: TObject);
+begin
+   Self.Repaint;
+   Self.Visible := True;
+   Self.ConfComponents;
+end;
 
 procedure TViewSplash.ConfComponents;
 begin
@@ -64,30 +76,11 @@ begin
    TimerShow.Enabled := True;
 end;
 
-procedure TViewSplash.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TViewSplash.TimerShowTimer(Sender: TObject);
 begin
-   Application.CreateForm(TViewMain, ViewMain);
-   Self.Visible := False;
-   Self.Hide;
-   Self.Refresh;
-end;
+   TimerShow.Enabled := False;
 
-procedure TViewSplash.FormCloseQuery(Sender: TObject;
-  var CanClose: Boolean);
-begin
-   CanClose := not TimerShow.Enabled;
-end;
-
-procedure TViewSplash.FormCreate(Sender: TObject);
-begin
-   FController := TControllerFactory.New;
-end;
-
-procedure TViewSplash.FormShow(Sender: TObject);
-begin
-   Self.Repaint;
-   Self.Visible := True;
-   Self.ConfComponents;
+   Self.LoadProtocols;
 end;
 
 procedure TViewSplash.LoadProtocols;
@@ -98,14 +91,29 @@ begin
       .DisplayInformation(WriteMessages)
       .LoadProtocols;
 
+   if(not FController.Forms.Splash.LoadingComplete)then
+      Self.SystemTerminate;
+
    Self.Close;
 end;
 
-procedure TViewSplash.TimerShowTimer(Sender: TObject);
+procedure TViewSplash.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
 begin
-   TimerShow.Enabled := False;
+   CanClose := not TimerShow.Enabled;
+end;
 
-   Self.LoadProtocols;
+procedure TViewSplash.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+   Application.CreateForm(TViewMain, ViewMain);
+   Self.Visible := False;
+   Self.Hide;
+   Self.Refresh;
+end;
+
+procedure TViewSplash.SystemTerminate;
+begin
+   Application.Terminate;
 end;
 
 procedure TViewSplash.WriteMessages(pMessage: String);

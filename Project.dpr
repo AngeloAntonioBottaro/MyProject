@@ -23,10 +23,14 @@ uses
   Model.Entities.Interfaces in 'src\Model\Entities\Model.Entities.Interfaces.pas',
   Model.Entities.Factory in 'src\Model\Entities\Model.Entities.Factory.pas',
   Model.Entities.PermissoesUsuario in 'src\Model\Entities\Model.Entities.PermissoesUsuario.pas',
-  Model.Forms.Interfaces in 'src\Model\Forms\Model.Forms.Interfaces.pas',
+  Model.Entities.Usuario in 'src\Model\Entities\Model.Entities.Usuario.pas',
+  Model.DAO.Factory in 'src\Model\DAO\Model.DAO.Factory.pas',
+  Model.DAO.Interfaces in 'src\Model\DAO\Model.DAO.Interfaces.pas',
   Model.Forms.Factory in 'src\Model\Forms\Model.Forms.Factory.pas',
+  Model.Forms.Interfaces in 'src\Model\Forms\Model.Forms.Interfaces.pas',
   Model.Forms.Splash in 'src\Model\Forms\Model.Forms.Splash.pas',
-  Model.Forms.Main in 'src\Model\Forms\Model.Forms.Main.pas';
+  Model.DAO.Usuario in 'src\Model\DAO\Model.DAO.Usuario.pas',
+  Model.DAO.PermissoesUsuario in 'src\Model\DAO\Model.DAO.PermissoesUsuario.pas';
 
 {$R *.res}
 
